@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-backend
+  template:
+    metadata:
+      labels:
+        app: flask-backend
+    spec:
+      containers:
+        - name: flask-backend-container
+          image: flask-backend-image:1.0
+          imagePullPolicy: IfNotPresent  # Add this line to specify image pull policy
+          ports:
+            - containerPort: 5001
